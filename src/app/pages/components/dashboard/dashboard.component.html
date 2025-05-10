@@ -1,0 +1,129 @@
+
+
+<div class="dashboard-container container-fluid">
+  <!-- Header Section -->
+  <header class="dashboard-header card-header row align-items-center py-3">
+    <div class="col-md-8">
+      <h1 class="text-primary">Electric Vehicle Dashboard</h1>
+    </div>
+  </header>
+  <!-- KPI Cards Section -->
+  <div class="container">
+    <!-- Dashboard summary section -->
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card text-white bg-info">
+          <div class="card-body">
+            <h5 class="card-title">Total EVs</h5>
+            <p class="card-text">{{ totalEVs }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card text-white bg-success">
+          <div class="card-body">
+            <h5 class="card-title">Average Range</h5>
+            <p class="card-text">{{ avgRange }} miles</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card text-white bg-warning">
+          <div class="card-body">
+            <h5 class="card-title">Top EV Manufacturer</h5>
+            <p class="card-text">{{ topManufacturers[0]?.name }} ({{ topManufacturers[0]?.count }})</p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  
+    <!-- Top counties and manufacturers -->
+   
+    <!-- Vehicle map -->
+
+  <!-- Charts Section -->
+  <div class="row gy-4">
+    <div class="col-lg-6">
+      <div class="chart-card bg-white p-4 rounded shadow">
+        <h4 class="text-center text-primary">EV Growth Over Time</h4>
+        <apx-chart 
+          [series]="growthChartOptions.series" 
+          [chart]="growthChartOptions.chart" 
+          [xaxis]="growthChartOptions.xaxis" 
+          [title]="growthChartOptions.title">
+        </apx-chart>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="chart-card bg-white p-4 rounded shadow">
+        <h4 class="text-center text-success">EVs by Manufacturer</h4>
+        <apx-chart 
+          [series]="manufacturersChartOptions.series" 
+          [chart]="manufacturersChartOptions.chart" 
+          [xaxis]="manufacturersChartOptions.xaxis" 
+          [title]="manufacturersChartOptions.title">
+        </apx-chart>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="chart-card bg-white p-4 rounded shadow">
+        <h4 class="text-center text-info">EV Type Distribution</h4>
+        <apx-chart 
+          [series]="evTypeChartOptions.series" 
+          [chart]="evTypeChartOptions.chart" 
+          [labels]="evTypeChartOptions.labels" 
+          [title]="evTypeChartOptions.title">
+        </apx-chart>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="chart-card bg-white p-4 rounded shadow">
+        <h4 class="text-center text-warning">Range Distribution</h4>
+        <apx-chart 
+          [series]="rangeChartOptions.series" 
+          [chart]="rangeChartOptions.chart" 
+          [labels]="rangeChartOptions.labels" 
+          [title]="rangeChartOptions.title">
+        </apx-chart>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <!-- Top Counties Section -->
+    <div class="col-md-6">
+      <div class="card shadow-lg border-light rounded">
+        <div class="card-body">
+          <h5 class="card-title text-center text-primary font-weight-bold">Top Counties</h5>
+          <ul class="list-group list-group-flush">
+            <li *ngFor="let county of topCounties" class="list-group-item list-group-item-action">
+              <div class="d-flex justify-content-between">
+                <span class="font-weight-bold">{{ county.name }}</span>
+                <span class="badge badge-info badge-pill">{{ county.count }}</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Top Manufacturers Section -->
+    <div class="col-md-6">
+      <div class="card shadow-lg border-light rounded">
+        <div class="card-body">
+          <h5 class="card-title text-center text-success font-weight-bold">Top Manufacturers</h5>
+          <ul class="list-group list-group-flush">
+            <li *ngFor="let manufacturer of topManufacturers" class="list-group-item list-group-item-action">
+              <div class="d-flex justify-content-between">
+                <span class="font-weight-bold">{{ manufacturer.name }}</span>
+                <span class="badge badge-success badge-pill">{{ manufacturer.count }}</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
